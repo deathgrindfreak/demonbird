@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include "SDL/SDL.h"
 #include "SDL/SDL_ttf.h"
+#include "SDL/SDL_mixer.h"
 
 #define SCREEN_HEIGHT 480
 #define SCREEN_WIDTH 640
@@ -26,7 +27,7 @@
 #define GROUND_B 106
 
 #define MAX_PIPES 10
-#define PIPE_GAP 70
+#define PIPE_GAP 100
 #define PIPE_SPACING 100
 #define HEIGHT_OFFSET 25
 #define HEIGHT_RANGE 100
@@ -34,10 +35,22 @@
 /* determined at runtime, since it depends on the size of the bird sprite */
 int BOTTOM_LIMIT;
 
+enum {
+	ANGEL_OF_DEATH,
+	DETH_SOUND,
+	MAX_SOUNDS
+};
+
 typedef struct Game {
     bool paused;
+	int score;
     SDL_Surface *screen;
+	TTF_Font *score_font;
 } Game;
+
+typedef struct Sound {
+	Mix_Chunk *effect;
+} Sound;
 
 typedef struct Bird {
 	int x, y, flap; 
@@ -62,6 +75,7 @@ typedef struct Pipe {
 } Pipe;
 
 Game game;
+Sound sound[MAX_SOUNDS];
 Bird bird;
 Background background;
 Pipe pipes[MAX_PIPES];

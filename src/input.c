@@ -24,6 +24,11 @@ void get_input() {
 						bird.fall_time = bird.fall_timer = 0;
                         break;
                         
+                    case SDLK_SPACE:
+	                    bird.is_flapping = true;
+						bird.fall_time = bird.fall_timer = 0;
+                        break;
+                        
 					case 'p':
 						game.paused = !game.paused;
 						break;

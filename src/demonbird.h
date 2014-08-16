@@ -12,6 +12,7 @@
 #include "SDL/SDL_mixer.h"
 #include "SDL/SDL_ttf.h"
 
+#include "audio.h"
 #include "draw.h"
 #include "bird.h"
 #include "fonts.h"

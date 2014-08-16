@@ -47,6 +47,14 @@ int main(int argv, char *args[]) {
 /* init_game - initialize the game struct */
 void init_game() {
 	
+	/* load the score font and set the score to zero */
+	game.score_font = load_font("font/blackWolf.ttf", 24);
+	game.score = 0;
+	
+	/* load all of the sounds */
+	load_all_sounds();
+	/*play_sound(ANGEL_OF_DEATH);*/
+	
 	/* Initialize the pipe structs */
 	init_pipes();
 	

@@ -1,6 +1,6 @@
 CFLAGS = -Wall -pedantic -Werror
 LFLAGS = `sdl-config --libs` -lSDL -lSDL_image -lSDL_mixer -lSDL_ttf
-OBJS   = bird.o draw.o fonts.o graphics.o init.o input.o pipe.o demonbird.o
+OBJS   = audio.o bird.o collision.o draw.o fonts.o graphics.o init.o input.o pipe.o demonbird.o
 PROG = demonbird
 CXX = gcc
 

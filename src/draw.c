@@ -3,6 +3,8 @@
 
 /* draw - draws everything to a buffer, then flips buffer to game screen */
 void draw() {
+	
+	char score[20];
 
     /* Blank the screen */
     SDL_FillRect(game.screen, NULL, SDL_MapRGB(game.screen->format, 
@@ -22,8 +24,16 @@ void draw() {
     /* get the current bird clip */
     get_bird_position();
     
+    /* check for a collision */
+    printf("%s\n", is_collision() ? "true" : "false");
+    
     /* draw the bird */
     draw_bird();
+    
+    /* draw the score */
+    check_score();
+    sprintf(score, "%d", game.score);
+    draw_string(score, SCREEN_WIDTH / 2, 20, game.score_font, true, false);
 
     /* Flip the buffer */
     SDL_Flip(game.screen);

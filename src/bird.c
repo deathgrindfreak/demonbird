@@ -77,3 +77,16 @@ void move_bird() {
 		}
 	}
 }
+
+
+/* check_score - controls the score of the game */
+void check_score() {
+
+	int i;
+	for (i = 0; i < MAX_PIPES; i++) {
+		if (pipes[i].active && pipes[i].x == bird.x + BIRD_WIDTH / 2) {
+			game.score++;
+			play_sound(DETH_SOUND);
+		}
+	}
+}
