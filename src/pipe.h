@@ -1,6 +1,8 @@
 #ifndef PIPE_H
 #define PIPE_H
 
+#include <stdlib.h>
+
 #include "graphics.h"
 #include "types.h"
 

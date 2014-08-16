@@ -9,7 +9,7 @@ void init_pipes() {
 		pipes[i].active = false;
 		pipes[i].pipe = load_image("img/pipe.png");
 		pipes[i].pipe_top = load_image("img/pipe_top.png");
-		pipes[i].height = random() % HEIGHT_RANGE + HEIGHT_OFFSET;
+		pipes[i].height = rand() % HEIGHT_RANGE + HEIGHT_OFFSET;
 		pipes[i].x = SCREEN_WIDTH + pipes[i].pipe_top->w;
 	}
 	
@@ -53,7 +53,7 @@ void move_pipes() {
 		/* if the pipe moves offscreen */
 		if (pipes[c].x < -1 * pipes[c].pipe_top->w) {
 			pipes[c].active = false;
-			pipes[c].height = random() % HEIGHT_RANGE + HEIGHT_OFFSET;
+			pipes[c].height = rand() % HEIGHT_RANGE + HEIGHT_OFFSET;
 			pipes[c].x = SCREEN_WIDTH + pipes[c].pipe_top->w;
 		}
 		
