@@ -13,6 +13,9 @@ void draw() {
     /* draw the background */
     draw_background();
     
+    /* move the pipes */
+    move_pipes();
+    
     /* draw the pipes */
     draw_pipe();
     

@@ -55,6 +55,8 @@ void move_bird() {
 				
 			} else if (bird.y + y_increment < 0) {
 				bird.y = 0;
+				bird.fall_time++;
+				
 			} else if (bird.y + y_increment > BOTTOM_LIMIT) {
 				bird.y = BOTTOM_LIMIT;
 			}

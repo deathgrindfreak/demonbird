@@ -14,7 +14,6 @@ void draw_bird();
 void load_bird();
 void draw_background();
 void load_background();
-void load_pipe();
 void draw_pipe();
 
 #endif

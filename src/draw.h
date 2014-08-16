@@ -7,6 +7,7 @@
 #include "fonts.h"
 #include "types.h"
 #include "graphics.h"
+#include "pipe.h"
 
 void draw();
 void delay(unsigned int frame_limit);

@@ -17,6 +17,7 @@
 #include "fonts.h"
 #include "init.h"
 #include "input.h"
+#include "pipe.h"
 #include "types.h"
 
 void init_game();

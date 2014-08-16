@@ -47,7 +47,8 @@ int main(int argv, char *args[]) {
 /* init_game - initialize the game struct */
 void init_game() {
 	
-	load_pipe();
+	/* Initialize the pipe structs */
+	init_pipes();
 	
 	/* load the bird sprite */
 	load_bird();

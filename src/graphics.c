@@ -79,17 +79,17 @@ void load_bird() {
 	/* Instantiate the clip regions */
 	bird.clips[0].x = 0;
 	bird.clips[0].y = 0;
-	bird.clips[0].w = BIRD_WIDTH;
+	bird.clips[0].w = BIRD_WIDTH - 1;
 	bird.clips[0].h = bird.bird->h;
 	
 	bird.clips[1].x = BIRD_WIDTH - 1;
 	bird.clips[1].y = 0;
-	bird.clips[1].w = BIRD_WIDTH;
+	bird.clips[1].w = BIRD_WIDTH - 1;
 	bird.clips[1].h = bird.bird->h;
 
 	bird.clips[2].x = 2 * BIRD_WIDTH - 2;
 	bird.clips[2].y = 0;
-	bird.clips[2].w = BIRD_WIDTH + 2;
+	bird.clips[2].w = BIRD_WIDTH - 1;
 	bird.clips[2].h = bird.bird->h;
 }
 
@@ -191,37 +191,39 @@ void draw_background() {
 }
 
 
-/* load_pipe - loads the pipe sprites */
-void load_pipe() {
-	
-	pipes[0].pipe = load_image("img/pipe.png");
-	pipes[0].pipe_top = load_image("img/pipe_top.png");
-	pipes[0].height = 40;
-	pipes[0].x = 400;
-}
-
-
-/* draw_pipe - draws a pipe on the screen */
+/* draw_pipe - draws all active pipes on the screen */
 void draw_pipe() {
 	
-	int i, offset = 12;
-	int bottom_height = (GROUND_HEIGHT - offset - (PIPE_GAP + 
-						pipes[0].height * pipes[0].pipe->h)) / pipes[0].pipe->h;
+	int i, j, len = 0, actives[MAX_PIPES], offset = 12, bottom_height, cur_ind;
 	
-	for (i = 0; i < pipes[0].height - 2; i++) {
-		draw_image(pipes[0].pipe, pipes[0].x, i * pipes[0].pipe->h);
-	}
+	for (i = 0; i < MAX_PIPES; i++)
+		if (pipes[i].active)
+			actives[len++] = i;
 	
-	for (i = pipes[0].height - 2; i <= pipes[0].height; i++) {
-		draw_image(pipes[0].pipe_top, pipes[0].x - 2, i * pipes[0].pipe->h - 1);
-	}
 	
-	for (i = 0; i < bottom_height - 2; i++) {
-		draw_image(pipes[0].pipe, pipes[0].x, GROUND_HEIGHT - offset - i * pipes[0].pipe->h);
-	}
-	
-	for (i = bottom_height - 2; i <= bottom_height; i++) {
-		draw_image(pipes[0].pipe_top, pipes[0].x - 2, 
-		           GROUND_HEIGHT - offset - i * pipes[0].pipe->h - 1);
+	for (j = 0; j < len; j++) {
+		
+		cur_ind = actives[j];
+		
+		bottom_height = (GROUND_HEIGHT - offset - (PIPE_GAP + 
+						pipes[cur_ind].height * pipes[cur_ind].pipe->h)) / pipes[cur_ind].pipe->h;
+
+		for (i = 0; i < pipes[cur_ind].height - 2; i++) {
+			draw_image(pipes[cur_ind].pipe, pipes[cur_ind].x, i * pipes[cur_ind].pipe->h);
+		}
+
+		for (i = pipes[cur_ind].height - 2; i <= pipes[cur_ind].height; i++) {
+			draw_image(pipes[cur_ind].pipe_top, pipes[cur_ind].x - 2, i * pipes[cur_ind].pipe->h - 1);
+		}
+
+		for (i = 0; i < bottom_height - 2; i++) {
+			draw_image(pipes[cur_ind].pipe, pipes[cur_ind].x, 
+			           GROUND_HEIGHT - offset - i * pipes[cur_ind].pipe->h);
+		}
+
+		for (i = bottom_height - 2; i <= bottom_height; i++) {
+			draw_image(pipes[cur_ind].pipe_top, pipes[cur_ind].x - 2, 
+					   GROUND_HEIGHT - offset - i * pipes[cur_ind].pipe->h - 1);
+		}
 	}
 }

@@ -14,7 +14,7 @@
 
 #define FLAP_TIME 6 
 #define FALL_SPEED 5
-#define FLAP_SPEED 20
+#define FLAP_SPEED 15
 #define GRAVITY 3.5
 
 #define BACKGROUND_R 0 
@@ -26,7 +26,10 @@
 #define GROUND_B 106
 
 #define MAX_PIPES 10
-#define PIPE_GAP 100
+#define PIPE_GAP 70
+#define PIPE_SPACING 100
+#define HEIGHT_OFFSET 25
+#define HEIGHT_RANGE 100
 
 /* determined at runtime, since it depends on the size of the bird sprite */
 int BOTTOM_LIMIT;
@@ -52,6 +55,8 @@ typedef struct Background {
 } Background;
 
 typedef struct Pipe {
+	bool active;
+	int time;
 	int x, height;
 	SDL_Surface *pipe, *pipe_top;
 } Pipe;
