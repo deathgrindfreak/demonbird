@@ -5,6 +5,21 @@
 
 #include "types.h"
 
+typedef struct Rect {
+    int x, y; /* top left corner of pipe */
+    int width, height;
+} Rect;
+
+typedef struct Ellipse {
+    int major, minor;
+} Ellipse;
+
+typedef struct PipeShape {
+    Rect top_pipe, top_pipe_top;
+    Rect bottom_pipe, bottom_pipe_top;
+} PipeShape;
+
 bool is_collision();
+void init_pipeshape(PipeShape *pipe);
 
 #endif

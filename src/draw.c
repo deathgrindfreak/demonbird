@@ -15,18 +15,20 @@ void draw() {
     /* draw the background */
     draw_background();
     
-    /* move the pipes */
-    move_pipes();
+    /* check for a collision */
+    if(!game.over) {
+
+        /* move the pipes */
+        move_pipes();
+        
+        /* get the current bird clip */
+        get_bird_position();
+
+    } 
     
     /* draw the pipes */
     draw_pipe();
-    
-    /* get the current bird clip */
-    get_bird_position();
-    
-    /* check for a collision */
-    printf("%s\n", is_collision() ? "true" : "false");
-    
+
     /* draw the bird */
     draw_bird();
     

@@ -22,5 +22,6 @@
 #include "types.h"
 
 void init_game();
+void new_game();
 
 #endif

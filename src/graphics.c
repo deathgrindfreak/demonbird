@@ -129,8 +129,10 @@ void draw_background() {
 	int i, x = 0;
 	
 	/* increment the timer */
-	background.timer++;
-	background.grass_offset++;
+    if (!game.over) {
+        background.timer++;
+        background.grass_offset++;
+    }
 	
 	/* Draw the ground */
 	ground.x = ground_border.x = grass_border.x = asphalt.x = 0;

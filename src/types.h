@@ -42,7 +42,7 @@ enum {
 };
 
 typedef struct Game {
-    bool paused;
+    bool paused, over;
 	int score;
     SDL_Surface *screen;
 	TTF_Font *score_font;

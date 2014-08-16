@@ -24,15 +24,31 @@ int main(int argv, char *args[]) {
 
     /* Game loop */
     while (running) {
-	    
+
         /* Get user input */
         get_input();
-        
-        /* move the bird */
-        move_bird();
+	    
+        if (!is_collision()) {
+
+            /* move the bird */
+            move_bird();
+
+        } else {
+            game.over = true;
+        }
 
         /* Draw everything on the screen */
         draw();
+
+        /* if the game is over */
+        if (game.over) {
+
+            /* pause for a bit */
+            SDL_Delay(1000);
+
+            /* start a new game */
+            new_game();
+        }
 
         /* Sleep for a bit */
         delay(frame_limit);
@@ -50,6 +66,7 @@ void init_game() {
 	/* load the score font and set the score to zero */
 	game.score_font = load_font("font/blackWolf.ttf", 24);
 	game.score = 0;
+    game.paused = game.over = false;
 	
 	/* load all of the sounds */
 	load_all_sounds();
@@ -70,6 +87,24 @@ void init_game() {
 	/* load the background sprites */
 	load_background();
 	
+	/* inititalize the background timers */
+	background.timer = background.offset = 0;
+}
+
+
+/* new_game - initialize a new game struct */
+void new_game() {
+
+	/* load the score font and set the score to zero */
+	game.score = 0;
+    game.paused = game.over = false;
+	
+	/* Initialize the pipe structs */
+	init_pipes();
+	
+	/* initialize the bird struct */
+	init_bird();
+
 	/* inititalize the background timers */
 	background.timer = background.offset = 0;
 }
