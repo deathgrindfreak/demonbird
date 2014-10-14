@@ -2,12 +2,12 @@
 
 
 /* is_collision - checks for a collision between the bird and a pipe */
-bool is_collision() {
+int is_collision() {
 
 	int i;
     PipeShape cur_pipe;
     Ellipse bird_shape;
-
+    
     init_pipeshape(&cur_pipe);
 
     bird_shape.major = BIRD_WIDTH - 4;
@@ -16,7 +16,6 @@ bool is_collision() {
 	for (i = 0; i < MAX_PIPES; i++) {
 
 		if (pipes[i].active) {
-
 
             /* Instantiate the current pipe struct */
             cur_pipe.top_pipe.x = pipes[i].x;
@@ -39,7 +38,21 @@ bool is_collision() {
             cur_pipe.bottom_pipe_top.width = pipes[i].pipe_top->w;
             cur_pipe.bottom_pipe_top.height = 3 * pipes[i].pipe->h;
 			
-			/* check for collision on both tops of pipe */
+            if (!((bird.y > cur_pipe.top_pipe_top.y + cur_pipe.top_pipe_top.height) ||
+                  (bird.y + bird_shape.minor < cur_pipe.top_pipe_top.y) ||
+                  (bird.x + bird_shape.major < cur_pipe.top_pipe_top.x) ||
+                  (bird.x > cur_pipe.top_pipe_top.x + cur_pipe.top_pipe_top.width))) {
+	            return i;
+            }
+            
+            if (!((bird.y + bird_shape.minor < cur_pipe.bottom_pipe_top.y) ||
+                  (bird.y > cur_pipe.bottom_pipe_top.y + cur_pipe.bottom_pipe_top.width) ||
+                  (bird.x + bird_shape.major < cur_pipe.bottom_pipe_top.x) ||
+                  (bird.x > cur_pipe.top_pipe_top.x + cur_pipe.bottom_pipe_top.width))) {
+	            return -1 * i;
+            }
+			
+            /* check for collision on both tops of pipe 
 			if (((bird.x + bird_shape.major >= cur_pipe.top_pipe_top.x &&
                   bird.x + bird_shape.major <= cur_pipe.top_pipe_top.x + cur_pipe.top_pipe_top.width) ||
 			     (bird.x >= cur_pipe.top_pipe_top.x &&
@@ -47,7 +60,7 @@ bool is_collision() {
 			     (bird.y <= cur_pipe.top_pipe_top.y ||
 			      bird.y + bird_shape.minor >= cur_pipe.bottom_pipe_top.y)) {
 				return true;
-			}
+				}*/
 			
 			/* check for collision on sides of pipe */
 			if (((bird.x + bird_shape.major >= cur_pipe.top_pipe.x &&
@@ -56,7 +69,7 @@ bool is_collision() {
                   bird.x <= cur_pipe.top_pipe.x + cur_pipe.top_pipe.width)) &&
 			     (bird.y <= cur_pipe.top_pipe.y ||
 			      bird.y + bird_shape.minor >= cur_pipe.bottom_pipe.y)) {
-				return true;
+				return 0;
 			}
 
 			/* check for collision on corner of pipe */
@@ -64,7 +77,7 @@ bool is_collision() {
 		}
 	}
 	
-	return false;
+	return -11;
 }
 
 

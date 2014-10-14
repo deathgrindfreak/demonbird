@@ -28,14 +28,10 @@ int main(int argv, char *args[]) {
         /* Get user input */
         get_input();
 	    
-        if (!is_collision()) {
 
             /* move the bird */
             move_bird();
 
-        } else {
-            game.over = true;
-        }
 
         /* Draw everything on the screen */
         draw();

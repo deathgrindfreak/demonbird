@@ -2,6 +2,7 @@
 #define BIRD_H
 
 #include "audio.h"
+#include "collision.h"
 #include "types.h"
 
 void init_bird();

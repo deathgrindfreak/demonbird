@@ -5,7 +5,7 @@
 void draw() {
 	
 	char score[20];
-
+    
     /* Blank the screen */
     SDL_FillRect(game.screen, NULL, SDL_MapRGB(game.screen->format, 
                                                BACKGROUND_R,

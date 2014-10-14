@@ -19,7 +19,7 @@ typedef struct PipeShape {
     Rect bottom_pipe, bottom_pipe_top;
 } PipeShape;
 
-bool is_collision();
+int is_collision();
 void init_pipeshape(PipeShape *pipe);
 
 #endif

@@ -3,7 +3,7 @@
 
 /* init_bird - initialize the bird */
 void init_bird() {
-
+	
 	bird.x = (SCREEN_WIDTH - BIRD_WIDTH) / 2;
 	bird.y = (GROUND_HEIGHT - bird.bird->h) / 2;
 	bird.flap = bird.timer = bird.fall_time = bird.fall_timer = 0;
@@ -32,7 +32,7 @@ void get_bird_position() {
 /* move_bird - moves the bird down continously */
 void move_bird() {
 	
-	int y_increment;
+	int y_increment, ht;
 	
 	/* bird is on the screen */
 	if (bird.y >= 0 && bird.y <= BOTTOM_LIMIT) {
@@ -51,6 +51,16 @@ void move_bird() {
 				if (bird.fall_timer % FALL_SPEED == 0) {
 					bird.fall_time++;
 					bird.y += y_increment;
+					
+					if ((ht = is_collision()) > 0) {
+						bird.y -= y_increment;
+						game.over = true;
+					} else if (ht < 0 && ht != -11) {
+						bird.y -= y_increment;
+						game.over = true;
+					} else if (ht == 0){
+						game.over = true;
+					}
 				} 
 				
 			} else if (bird.y + y_increment < 0) {
