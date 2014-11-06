@@ -1,12 +1,9 @@
 DemonBird
 =======
 DemonBird is a metal-inspired flappy bird clone.  Right now, it uses some stock flappy bird images, but as soon
-as my artist collaborator gets off his ass I'll include the new images.
+as my artist collaborator gets around to making them, I'll include the new images.
 
-In an attempt to be at least a little original, I've made the colors of the
-tetrominoes and the board correspond to the [Solarized](http://ethanschoonover.com/solarized) dark color scheme
-
-Also, this project is still a work in progress and is buggy as hell, so feel free to add to it if you'd like.
+Also, this project is still a work in progress and is pretty buggy, so feel free to add to it if you'd like.
 
 ![DemonBird](demo.png?raw=true "DemonBird")
 
